@@ -35,10 +35,10 @@ Things you may want to cover:
 | firstname       | string | null: false |
 | rubi familyname | string | null: false |
 | rubi firstname  | string | null: false |
-| birthday        | string | null: false |
+| date            | string | null: false |
 
 ### Association
-- has_one :credit
+- has_one :address
 - has_many :items, through:items_users
 - has_many :comments
 
@@ -62,14 +62,15 @@ Things you may want to cover:
 
 
 
-## credit テーブル
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| creditcard number  | string | null: false, foreign_key: true |
-| expiration date    | string | null: false, foreign_key: true |
-| security code      | string | null: false, foreign_key: true |
-| address            | string | null: false, foreign_key: true |
-| phone number       | string | null: false, foreign_key: true |
+## address テーブル
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| post number    | string     | null: false, foreign_key: true |
+| prefecture     | string     | null: false, foreign_key: true |
+| city           | string     | null: false, foreign_key: true |
+| house number   | string     | null: false, foreign_key: true |
+| buillding name | string     | null: false, foreign_key: true |
+| phone number   | string     | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :users
