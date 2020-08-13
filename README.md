@@ -35,45 +35,42 @@ Things you may want to cover:
 | firstname       | string | null: false |
 | rubi familyname | string | null: false |
 | rubi firstname  | string | null: false |
-| date            | string | null: false |
+| birthday        | date   | null: false |
 
 ### Association
-- has_one :address
 - has_many :items, through:items_users
-- has_many :comments
 
 
 ## items テーブル
-| Column         | Type   | Options     |
-| -------------- | ------ | ----------- |
-| image          | string | null: false |
-| price          | string | null: false |
-| itemname       | string | null: false |
-| text           | string | null: false |
-| category       | string | null: false |
-| condition      | string | null: false |
-| cost burden    | string | null: false |
-| shipping place | string | null: false |
-| shipping days  | string | null: false |
+| Column         | Type    | Options     |
+| -------------- | ------- | ----------- |
+| image          | string  | null: false |
+| price          | string  | null: false |
+| itemname       | string  | null: false |
+| text           | string  | null: false |
+| category       | integer | null: false |
+| condition      | integer | null: false |
+| cost burden    | integer | null: false |
+| shipping place | integer | null: false |
+| shipping days  | integer | null: false |
 
 ### Association
-- belongs_to :users
-- has_many :comments
+- belongs_to :users, through:items_users
+- has_one :items_users
 
 
 
 ## address テーブル
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| post number    | string     | null: false, foreign_key: true |
-| prefecture     | string     | null: false, foreign_key: true |
-| city           | string     | null: false, foreign_key: true |
-| house number   | string     | null: false, foreign_key: true |
-| buillding name | string     | null: false, foreign_key: true |
-| phone number   | string     | null: false, foreign_key: true |
+| Column         | Type       | Options     |
+| -------------- | ---------- | ----------- |
+| post number    | string     | null: false |
+| prefecture     | string     | null: false |
+| city           | string     | null: false |
+| house number   | string     | null: false |
+| buillding name | string     |             |
+| phone number   | string     | null: false |
 
 ### Association
-- belongs_to :users
 
 
 ## comments テーブル
@@ -84,8 +81,7 @@ Things you may want to cover:
 | item    | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items 
+- belongs_to :items_users
 
 
 
@@ -96,8 +92,9 @@ Things you may want to cover:
 | item   | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items 
+- has_many :comments
+- belongs_to :user
+- belongs_to :item 
 
 
 ## items_comments テーブル
@@ -108,4 +105,5 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :comments
-- belongs_to :items 
+
+- belongs_to :item
