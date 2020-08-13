@@ -46,7 +46,7 @@ Things you may want to cover:
 | -------------- | ------- | ----------- |
 | image          | string  | null: false |
 | price          | string  | null: false |
-| itemname       | string  | null: false |
+| name           | string  | null: false |
 | text           | string  | null: false |
 | category       | integer | null: false |
 | condition      | integer | null: false |
@@ -55,22 +55,9 @@ Things you may want to cover:
 | shipping days  | integer | null: false |
 
 ### Association
-- belongs_to :users, through:items_users
+- belongs_to :user, through:items_users
 - has_one :items_users
 
-
-
-## address テーブル
-| Column         | Type       | Options     |
-| -------------- | ---------- | ----------- |
-| post number    | string     | null: false |
-| prefecture     | string     | null: false |
-| city           | string     | null: false |
-| house number   | string     | null: false |
-| buillding name | string     |             |
-| phone number   | string     | null: false |
-
-### Association
 
 
 ## comments テーブル
@@ -97,6 +84,7 @@ Things you may want to cover:
 - belongs_to :item 
 
 
+
 ## items_comments テーブル
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -105,5 +93,4 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :comments
-
 - belongs_to :item
