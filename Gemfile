@@ -61,3 +61,5 @@ end
 group :production do
   gem 'rails_12factor' #rails_12factorは、開発環境ではなく本番環境で使用するGemです。このように:productionで指定すると本番環境のみで使用されるように指定できます。
 end
+
+gem 'devise'
