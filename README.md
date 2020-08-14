@@ -46,9 +46,9 @@ Things you may want to cover:
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | image          | string     | null: false                    |
-| price          | string     | null: false                    |
+| price          | integer    | null: false                    |
 | name           | string     | null: false                    |
-| text           | string     | null: false                    |
+| text           | text       | null: false                    |
 | category       | integer    | null: false                    |
 | condition      | integer    | null: false                    |
 | cost burden    | integer    | null: false                    |
@@ -86,7 +86,7 @@ Things you may want to cover:
 | items_users    | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :items_usersここはOKらしい
+- belongs_to :items_users
 
 
 ## items_users テーブル
