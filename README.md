@@ -96,7 +96,6 @@ Things you may want to cover:
 | item   | references | null: false, foreign_key: true |
 
 ### Association
-- has_many :comments
 - belongs_to :user
 - belongs_to :item 
 - has_one :address
