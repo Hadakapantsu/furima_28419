@@ -42,17 +42,17 @@ Things you may want to cover:
 
 
 ## items テーブル
-| Column         | Type    | Options     |
-| -------------- | ------- | ----------- |
-| image          | string  | null: false |
-| price          | string  | null: false |
-| name           | string  | null: false |
-| text           | string  | null: false |
-| category       | integer | null: false |
-| condition      | integer | null: false |
-| cost burden    | integer | null: false |
-| shipping place | integer | null: false |
-| shipping days  | integer | null: false |
+| Column         | Type    | Options                        |
+| -------------- | ------- | ------------------------------ |
+| image          | string  | null: false                    |
+| price          | string  | null: false                    |
+| name           | string  | null: false                    |
+| text           | string  | null: false                    |
+| category       | integer | null: false                    |
+| condition      | integer | null: false                    |
+| cost burden    | integer | null: false, foreign_key: true |
+| shipping place | integer | null: false, foreign_key: true |
+| shipping days  | integer | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user, through:items_users
@@ -71,6 +71,18 @@ Things you may want to cover:
 - belongs_to :items_users
 
 
+## address テーブル
+| Column         | Type       | Options     |
+| -------------- | ---------- | ----------- |
+| post number    | string     | null: false |
+| prefecture     | string     | null: false |
+| city           | string     | null: false |
+| house number   | string     | null: false |
+| buillding name | string     |             |
+| phone number   | string     | null: false |
+### Association
+- belongs_to :items_users
+
 
 ## items_users テーブル
 | Column | Type       | Options                        |
@@ -82,7 +94,7 @@ Things you may want to cover:
 - has_many :comments
 - belongs_to :user
 - belongs_to :item 
-
+- has_one :address
 
 
 ## items_comments テーブル
