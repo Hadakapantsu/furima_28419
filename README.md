@@ -39,6 +39,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :items, through:items_users
+- has_one :comment
 
 
 ## items テーブル
@@ -58,6 +59,7 @@ Things you may want to cover:
 ### Association
 - belongs_to :user, through:items_users
 - has_one :items_users
+- has_one :comment
 
 
 
@@ -69,8 +71,8 @@ Things you may want to cover:
 | item    | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :items_users
-
+- belongs_to :user
+- belongs_to :item
 
 ## address テーブル
 | Column         | Type       | Options                        |
@@ -84,7 +86,7 @@ Things you may want to cover:
 | items_users    | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :items_users
+- belongs_to :items_usersここはOKらしい
 
 
 ## items_users テーブル
@@ -100,12 +102,4 @@ Things you may want to cover:
 - has_one :address
 
 
-## items_comments テーブル
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| comment | string     |                                |
-| item    | references | null: false, foreign_key: true |
 
-### Association
-- belongs_to :comments
-- belongs_to :item
