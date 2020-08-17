@@ -26,16 +26,17 @@ Things you may want to cover:
 # テーブル設計
 
 ## users テーブル
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| nickname        | string | null: false | 
-| email           | string | null: false |
-| password        | string | null: false |
-| familyname      | string | null: false |
-| firstname       | string | null: false |
-| rubi familyname | string | null: false |
-| rubi firstname  | string | null: false |
-| birthday        | date   | null: false |
+| Column                | Type   | Options     |
+| --------------------- | ------ | ----------- |
+| nickname              | string | null: false | 
+| email                 | string | null: false |
+| password              | string | null: false |
+| password_confirmation | string | null: false |
+| familyname            | string | null: false |
+| firstname             | string | null: false |
+| rubi familyname       | string | null: false |
+| rubi firstname        | string | null: false |
+| birthday              | date   | null: false |
 
 ### Association
 - has_many :items, through:items_users
