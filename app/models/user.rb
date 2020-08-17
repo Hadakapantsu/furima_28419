@@ -29,7 +29,7 @@ class User < ApplicationRecord
     # パスワードは半角英数字混合であること
     validates :password, format: { with: /\A[a-z0-9]+\z/i }
     # パスワードは確認用を含めて2回入力すること
-    validates :password, numericality: { equal_to: true }
+    validates :password, :password_confirmation, numericality: { equal_to: true }
 
 ##本人情報確認
     # ユーザー本名が、名字と名前がそれぞれ必須であること
