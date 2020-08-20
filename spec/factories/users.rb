@@ -9,11 +9,8 @@ FactoryBot.define do
     rubi_familyname                  { 'ヤマダ' }
     rubi_firstname                   { 'タロウ' }
     birthday                         { Faker::Date.birthday }
-    # text {Faker::Lorem.sentence}
-    # association :
+
   end
 end
 
-#  birth_year            {2020}
-#  birth_month           {1}
-#  birth_day             {1}
+
