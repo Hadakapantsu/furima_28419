@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  
 
   def index
   end
@@ -16,11 +16,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(user_params)
-      redirect_to root_path
-    else
-      render :edit
-    end
+    #if current_user.update(user_params)
+      #redirect_to root_path
+    #else
+      #render :edit
+    #end
   end
 
   private
@@ -29,10 +29,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:nickname, :email)
   end
 
-  def move_to_index
-    unless user_signed_in?   #unlessでuser_signed_in?を判定して、その返り値がfalseだった場合にredirect_toが実行される。
-      redirect_to action: :index
-    end
-  end
-
+ 
 end
