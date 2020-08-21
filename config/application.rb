@@ -15,5 +15,9 @@ module Furima28419
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    #config.i18n.default_locale = :ja # デフォルトのlocaleを日本語(:ja)にする
+    #config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s] #gemインストール後、この記述を追記する(設定必須)
+
   end
 end
