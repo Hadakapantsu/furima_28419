@@ -23,7 +23,7 @@
         </div>
       <% else %>
         <div class="grid-6"> <!-- ログインしていない時 -->
-          <li><%= link_to 'ログイン', user_session_path, class: "login" %></li>
+          <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
           <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
         </div>
       <% end %>

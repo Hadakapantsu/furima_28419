@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root "items#index"
   # post "users#new"
 
-  resources :users, only: [:index, :new, :create, :edit, :update]
+  resources :users
   resources :items
  
 end
