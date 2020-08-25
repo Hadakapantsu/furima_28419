@@ -14,6 +14,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :shipping_days,   null: false
       t.references :user,         null: false, foreign_key: true
 
+
     end
   end
 end

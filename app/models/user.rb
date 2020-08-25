@@ -3,6 +3,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items # through: :item_users
+  #has_one :comment
+
 
 
   with_options presence: true do
