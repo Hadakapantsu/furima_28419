@@ -1,5 +1,8 @@
+ window.addEventListener("load", item);
+
 function item() {
   const text_field = document.getElementById("item-price");
+  // const formData = new FormData(document.getElementById("form"));
   text_field.addEventListener("change", function(){
     const data = text_field.value;// val()でフォームのvalueを取得(数値)
     const fee = data * 0.1  // 手数料計算を行う｡dataにかけているのが0.9なのは単に引きたい手数料が10%のため｡
