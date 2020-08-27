@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
 
   def checked
     post = Item.find(params[:id])
-    if post.checked 
+    if post.checked
       post.update(checked: false)
     else
       post.update(checked: true)
@@ -48,16 +48,15 @@ class ItemsController < ApplicationController
   def show
   end
 
- 
   private
 
   def item_params
-    params.require(:item).permit(:name, :image, :price, :text, :category, :condition, :cost_burden, :shipping_place, :shipping_days ).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :image, :price, :text, :category, :condition, :cost_burden, :shipping_place, :shipping_days).merge(user_id: current_user.id)
   end
 
- # def set_tweet
+  # def set_tweet
   #  @tweet = Tweet.find(params[:id])
-  #end
+  # end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?

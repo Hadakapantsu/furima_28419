@@ -9,8 +9,5 @@ FactoryBot.define do
     rubi_familyname                  { 'ヤマダ' }
     rubi_firstname                   { 'タロウ' }
     birthday                         { Faker::Date.birthday }
-
   end
 end
-
-

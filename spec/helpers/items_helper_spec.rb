@@ -11,5 +11,4 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ItemsHelper, type: :helper do
-  
 end
