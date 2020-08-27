@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:new, :create, :update]
 
   def index
     @items = Item.all
@@ -10,7 +10,26 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create(item_params)
+    @item = Item.new(item_params)
+
+    # binding.pry
+    if @item.save
+      redirect_to items_path
+    else
+      render :new
+    end
+  end
+
+  def checked
+    post = Item.find(params[:id])
+    if post.checked 
+      post.update(checked: false)
+    else
+      post.update(checked: true)
+    end
+
+    item = Item.find(params[:id])
+    render json: { post: item }
   end
 
   def destroy
@@ -29,15 +48,16 @@ class ItemsController < ApplicationController
   def show
   end
 
+ 
   private
 
   def item_params
-    params.require(:item).permit(:name, :image, :text).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :image, :price, :text, :category, :condition, :cost_burden, :shipping_place, :shipping_days ).merge(user_id: current_user.id)
   end
 
-  def set_tweet
-    @tweet = Tweet.find(params[:id])
-  end
+ # def set_tweet
+  #  @tweet = Tweet.find(params[:id])
+  #end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
