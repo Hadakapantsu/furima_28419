@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
-   # @users = User.all
+    # @users = User.all
   end
 
   def new
@@ -25,9 +25,9 @@ class UsersController < ApplicationController
   def update
     # current_user.update(user_params)
     if current_user.update(user_params)
-    redirect_to root_path
+      redirect_to root_path
     else
-    render :edit
+      render :edit
     end
   end
 

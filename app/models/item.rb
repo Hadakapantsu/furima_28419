@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
- 
+
   # has_one :comment
 
   with_options presence: true do
@@ -16,8 +16,6 @@ class Item < ApplicationRecord
     validates :user_id
 
     validates :image
-
-
 
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range' }
   end
