@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
+    # @users = User.all
   end
 
   def new
@@ -17,16 +18,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    user = User.find(params[:id])
     user.destroy
   end
 
   def update
-    # if current_user.update(user_params)
-    # redirect_to root_path
-    # else
-    # render :edit
-    # end
+    if current_user.update(user_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def move_to_index
-    redirect_to action: :index unless user_signed_in? # unlessでuser_signed_in?を判定して、その返り値がfalseだった場合にredirect_toが実行される。
+    redirect_to action: :index unless user_signed_in? 
+    # unlessでuser_signed_in?を判定して、その返り値がfalseだった場合にredirect_toが実行される。
   end
 end

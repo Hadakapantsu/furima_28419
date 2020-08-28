@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:new, :create, :update]
+  before_action :move_to_index, only: [:new, :create, :update, :edit] # ログインしてるユーザーのみnew,create,update,editが使用できる。
+  # こう書いても同じ意味になる→  before_action :move_to_index, expect: [:index, :show, :destroy](3つを除外する)
 
   def index
-    @items = Item.all
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
