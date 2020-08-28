@@ -2,8 +2,6 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  # has_one :comment
-
   with_options presence: true do
     validates :name, presence: true
     validates :text, presence: true
