@@ -29,19 +29,19 @@ RSpec.describe User, type: :model do
     end
 
     context '登録が上手くいかないとき' do
-      it 'ニックネームが必須であること' do 
+      it 'ニックネームが必須であること' do
         @user.nickname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
 
-      it 'メールアドレスが必須であること' do 
+      it 'メールアドレスが必須であること' do
         @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
-      it 'メールアドレスが一意性であること' do 
+      it 'メールアドレスが一意性であること' do
         @user.save
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
@@ -49,32 +49,32 @@ RSpec.describe User, type: :model do
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
 
-      it 'メールアドレスは@を含む必要があること' do 
+      it 'メールアドレスは@を含む必要があること' do
         @user.email = 'aaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include('Email is invalid')
       end
 
-      it 'パスワードが必須であること' do 
+      it 'パスワードが必須であること' do
         @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
-      
-      it 'パスワードは6文字以上であること' do 
+
+      it 'パスワードは6文字以上であること' do
         @user.password = '00000'
         @user.password_confirmation = '00000'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
-      it 'パスワードは半角英数字混合であること' do 
+      it 'パスワードは半角英数字混合であること' do
         @user.password = 'パスワード'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-      it 'パスワードは確認用を含めて2回入力すること' do 
+      it 'パスワードは確認用を含めて2回入力すること' do
         @user.password = '123abc'
         @user.password_confirmation = ''
         @user.valid?
