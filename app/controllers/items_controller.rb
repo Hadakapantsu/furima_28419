@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+      redirect_to items_path #redirect_to items_path(id: item_path)
     else
       render :new
     end
@@ -32,19 +32,21 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
+    @item = Item.find(params[:id])
     item.destroy
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
-    item = Item.find(params[:id])
+    @item = Item.find(params[:id])
     item.update(item_params)
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   private
@@ -53,9 +55,11 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :image, :price, :text, :category, :condition, :cost_burden, :shipping_place, :shipping_days).merge(user_id: current_user.id)
   end
 
-  # def set_tweet
-  #  @tweet = Tweet.find(params[:id])
+  # before_action :set_tweet, only: [:edit, :show]
+  # def set_item
+  #  @item = Item.find(params[:id])
   # end
+ 
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
