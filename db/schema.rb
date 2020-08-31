@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(version: 2020_08_25_101625) do
     t.integer "price", null: false
     t.string "name", null: false
     t.text "text", null: false
-    t.integer "category", null: false
-    t.integer "condition", null: false
-    t.integer "cost_burden", null: false
-    t.integer "shipping_place", null: false
-    t.integer "shipping_days", null: false
+    t.integer "category_id", null: false
+    t.integer "condition_id", null: false
+    t.integer "cost_burden_id", null: false
+    t.integer "shipping_place_id", null: false
+    t.integer "shipping_day_id", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
   end
