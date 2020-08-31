@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, only: [:new, :create, :update, :edit] # ログインしてるユーザーのみnew,create,update,editが使用できる。
   # こう書いても同じ意味になる→  before_action :move_to_index, expect: [:index, :show, :destroy](3つを除外する)
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -32,21 +33,17 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     item.destroy
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     item.update(item_params)
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   private
@@ -55,10 +52,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :image, :price, :text, :category_id, :condition_id, :cost_burden_id, :shipping_place_id, :shipping_day_id).merge(user_id: current_user.id)
   end
 
-  # before_action :set_tweet, only: [:edit, :show]
-  # def set_item
-  #  @item = Item.find(params[:id])
-  # end
+  def set_item
+   @item = Item.find(params[:id])
+  end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
