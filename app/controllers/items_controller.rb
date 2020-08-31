@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # こう書いても同じ意味になる→  before_action :move_to_index, expect: [:index, :show, :destroy](3つを除外する)
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path #redirect_to items_path(id: item_path)
+      redirect_to items_path # redirect_to items_path(id: item_path)
     else
       render :new
     end
@@ -59,7 +59,6 @@ class ItemsController < ApplicationController
   # def set_item
   #  @item = Item.find(params[:id])
   # end
- 
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
