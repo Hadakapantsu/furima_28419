@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, only: [:new, :create, :update, :edit] # ログインしてるユーザーのみnew,create,update,editが使用できる。
   # こう書いても同じ意味になる→  before_action :move_to_index, expect: [:index, :show, :destroy](3つを除外する)
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -13,7 +14,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+      redirect_to root_path # (id: item_path)
     else
       render :new
     end
@@ -32,7 +33,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
     item.destroy
   end
 
@@ -40,7 +40,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
     item.update(item_params)
   end
 
@@ -50,12 +49,12 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :image, :price, :text, :category, :condition, :cost_burden, :shipping_place, :shipping_days).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :image, :price, :text, :category_id, :condition_id, :cost_burden_id, :shipping_place_id, :shipping_day_id).merge(user_id: current_user.id)
   end
 
-  # def set_tweet
-  #  @tweet = Tweet.find(params[:id])
-  # end
+  def set_item
+   @item = Item.find(params[:id])
+  end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
