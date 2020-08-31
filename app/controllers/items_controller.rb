@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path # redirect_to items_path(id: item_path)
+      redirect_to root_path #(id: item_path)
     else
       render :new
     end
@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :image, :price, :text, :category, :condition, :cost_burden, :shipping_place, :shipping_days).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :image, :price, :text, :category_id, :condition_id, :cost_burden_id, :shipping_place_id, :shipping_day_id).merge(user_id: current_user.id)
   end
 
   # before_action :set_tweet, only: [:edit, :show]

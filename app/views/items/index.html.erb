@@ -133,9 +133,8 @@
       <% @items.each do |item| %>
         <%= link_to item_path(item.id) do %> <%#'/items/:id' %>
         <div class='item-img-content'>
-          <%= image_tag item.image, class: "item-img" %>
-
-          <%# 商品が売れていればsold outの表示 %>
+         <%= image_tag item.image, class: "item-img" %>
+         <%# 商品が売れていればsold outの表示 %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
