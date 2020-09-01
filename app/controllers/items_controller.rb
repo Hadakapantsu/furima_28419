@@ -66,6 +66,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index_if_not_seller
-    redirect_to root_path unless user_signed_in? && current_user.id == Product.find(params[:id]).user_id
+    redirect_to root_path unless user_signed_in? && current_user.id == @Product.user_id
   end
 end
