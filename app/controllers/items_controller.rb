@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:new, :create, :update, :edit] # ログインしてるユーザーのみnew,create,update,editが使用できる。
   # こう書いても同じ意味になる→  before_action :move_to_index, expect: [:index, :show, :destroy](3つを除外する)
   before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :move_to_index_if_not_seller, only: [:edit]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -62,5 +63,9 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
+  end
+
+  def move_to_index_if_not_seller
+    redirect_to root_path unless user_signed_in? && current_user.id == Product.find(params[:id]).user_id
   end
 end
