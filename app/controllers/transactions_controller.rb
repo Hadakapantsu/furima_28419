@@ -1,12 +1,17 @@
 class TransactionsController < ApplicationController
+  before_action :move_to_index, only: [:index, :create]
+  # before_action :move_to_index_if_exhibitor, only: [:index, :create]
 
   def index
+      #出品者はURLを直接入力して購入ページに遷移しようとすると、トップページに遷移すること
+    if user_signed_in? && current_user.id == @item.user_id
+      redirect_to root_path 
+    end
     @transaction = ItemUserAddress.new(params[:id])
     @item = Item.find(params[:item_id]) #ネストさせているときは[:id]ではなく[:item_id]と表記する。
   end
 
   def create
-    # post @item =  Item.find(params[:id])
     @transaction =ItemUserAddress.new(transaction_params)
     @item = Item.find(params[:item_id])
   
@@ -27,8 +32,6 @@ class TransactionsController < ApplicationController
 
   def item_id_params
     params.require(:item).permit(:name, :image, :price, :text).merge(user_id: current_user.id)
-    # params.permit(:name, :image, :price, :text).merge(user_id: current_user.id)
- 
   end
 
   def pay_item
@@ -39,7 +42,14 @@ class TransactionsController < ApplicationController
       card: params[:token],  # カードトークン  パラムスの中でtoken情報を引き出せているので、このような記述で問題ない。
       currency:'jpy'         # 通貨の種類(日本円)
     )
-  
+  end
+
+  #URLを直接入力して購入済みの商品ページへ遷移しようとすると、トップページに遷移すること
+  def move_to_index
+    @item = Item.find(params[:item_id]) 
+    if @item.item_user.present?
+       redirect_to root_path 
+    end
   end
 
 end
