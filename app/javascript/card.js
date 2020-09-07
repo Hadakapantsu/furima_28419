@@ -20,8 +20,8 @@ const pay = () => {
  
     //PAY.JPにアクセスして、トークンを作成しています.PAY.JP側の処理でトークンの生成に成功した場合に、if文の中のコードが実行されます
     Payjp.createToken(card, (status, response) => {
-      console.log(status)
-      console.table(response)
+      // console.log(status)
+      // console.table(response)
       if (status == 200) {
         const token = response.id;  //生成されたトークンを変数に代入します。トークンをパラメーターとして送るために、form内に隠し要素としてトークンの値が入っているHTMLを生成します。
         const renderDom = document.getElementById("charge-form"); //生成する要素を取得

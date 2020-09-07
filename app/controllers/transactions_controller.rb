@@ -14,7 +14,6 @@ class TransactionsController < ApplicationController
   def create
     @transaction =ItemUserAddress.new(transaction_params)
     @item = Item.find(params[:item_id])
-  
     if @transaction.valid?  #@transactionの値が正常にデータベースに保存できるかどうかを確認しています
       pay_item #trueが返されたら「pay_item」が起動
       @transaction.save
@@ -27,7 +26,7 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.permit(:item_id, :post_number, :prefecture_id, :city, :house_number, :buillding_name, :phone_number).merge(user_id: current_user.id) #item_user_id: item_user.id
+    params.permit(:token, :item_id, :post_number, :prefecture_id, :city, :house_number, :buillding_name, :phone_number).merge(user_id: current_user.id) #item_user_id: item_user.id
   end
 
   def item_id_params
@@ -35,7 +34,6 @@ class TransactionsController < ApplicationController
   end
 
   def pay_item
-      # binding.pry
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # PAY.JPテスト秘密鍵 
     Payjp::Charge.create(
       amount: @item.price,   # 商品の値段   上記で@itemを定義敷いているので、この記述のように値段を取り出せる。
