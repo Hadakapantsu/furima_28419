@@ -8,7 +8,7 @@ FactoryBot.define do
     condition_id        { 1 }
     cost_burden_id	     { 1 }
     shipping_place_id   { 1 }
-    shipping_day_id    { 1 }
+    shipping_day_id { 1 }
     association :user
   end
 end

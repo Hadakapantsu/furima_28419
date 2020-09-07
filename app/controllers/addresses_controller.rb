@@ -8,20 +8,19 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @adresses = ItemuserAddress.new(address_params)   
+    @adresses = ItemuserAddress.new(address_params)
     @address.save
     if @donation.valid?
       @donation.save  # バリデーションをクリアした時
-      return redirect_to root_path
+      redirect_to root_path
     else
-      render "new"    # バリデーションに弾かれた時
+      render 'new'    # バリデーションに弾かれた時
     end
   end
- 
-  private
- 
-  def address_params
-   params.require(:item_user_address).permit(:use_id, :item_id, :post_number, :prefecture_id, :city, :house_number, :buillding_name, :phone_number )
-  end
 
+  private
+
+  def address_params
+    params.require(:item_user_address).permit(:use_id, :item_id, :post_number, :prefecture_id, :city, :house_number, :buillding_name, :phone_number)
+  end
 end

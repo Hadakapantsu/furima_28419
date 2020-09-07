@@ -2,14 +2,13 @@ require 'rails_helper'
 
 RSpec.describe ItemUserAddress, type: :model do
   describe '#create' do
-    
     before do
       @user = FactoryBot.create(:user)    # userのアソシエーション情報を取得してる
-      @item = FactoryBot.build(:item)     # itemのアソシエーション情報を取得してる 
+      @item = FactoryBot.build(:item)     # itemのアソシエーション情報を取得してる
       @item.image = fixture_file_upload('star.png')
       @item_user_address = FactoryBot.build(:item_user_address)
     end
- 
+
     context '登録が上手くいくとき' do
       # :remember_token, :user, :item, :post_number, :prefecture, :city, :house_number, :phone_number
       it 'token,post_number,prefecture,city,house_number,phone_numberが存在すれば登録できる' do
@@ -42,13 +41,13 @@ RSpec.describe ItemUserAddress, type: :model do
       it '郵便番号がないと登録できない' do
         @item_user_address.post_number = nil
         @item_user_address.valid?
-        expect(@item_user_address.errors.full_messages).to include("Post number can't be blank", "Post number is invalid. Include hyphen(-)")
+        expect(@item_user_address.errors.full_messages).to include("Post number can't be blank", 'Post number is invalid. Include hyphen(-)')
       end
 
       it '郵便番号にハイフンががないと登録できない' do
         @item_user_address.post_number = '1234567'
         @item_user_address.valid?
-        expect(@item_user_address.errors.full_messages).to include("Post number is invalid. Include hyphen(-)")
+        expect(@item_user_address.errors.full_messages).to include('Post number is invalid. Include hyphen(-)')
       end
 
       it '都道府県がないと登録できない' do
@@ -78,19 +77,14 @@ RSpec.describe ItemUserAddress, type: :model do
       it '電話番号にハイフンがあると登録できない' do
         @item_user_address.phone_number = '123-4567-8901'
         @item_user_address.valid?
-        expect(@item_user_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@item_user_address.errors.full_messages).to include('Phone number is invalid')
       end
 
-      it '電話番号が11桁以上であるとき登録できない' do 
+      it '電話番号が11桁以上であるとき登録できない' do
         @item_user_address.post_number = '123456789012'
         @item_user_address.valid?
-        expect(@item_user_address.errors.full_messages).to include("Post number is invalid. Include hyphen(-)")
+        expect(@item_user_address.errors.full_messages).to include('Post number is invalid. Include hyphen(-)')
       end
-
-
-
-
-
 
       # it '郵便番号がないと登録できない' do
       #   @address. = nil
@@ -109,8 +103,6 @@ RSpec.describe ItemUserAddress, type: :model do
       #   @address.valid?
       #   expect(@address.errors.full_messages).to include("Image can't be blank")
       # end
-
     end
   end
-
 end
