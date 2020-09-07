@@ -86,23 +86,6 @@ RSpec.describe ItemUserAddress, type: :model do
         expect(@item_user_address.errors.full_messages).to include('Post number is invalid. Include hyphen(-)')
       end
 
-      # it '郵便番号がないと登録できない' do
-      #   @address. = nil
-      #   @address.valid?
-      #   expect(@address.errors.full_messages).to include("Image can't be blank")
-      # end
-
-      # it '郵便番号がないと登録できない' do
-      #   @address. = nil
-      #   @address.valid?
-      #   expect(@address.errors.full_messages).to include("Image can't be blank")
-      # end
-
-      # it '郵便番号がないと登録できない' do
-      #   @address.post_number = nil
-      #   @address.valid?
-      #   expect(@address.errors.full_messages).to include("Image can't be blank")
-      # end
     end
   end
 end

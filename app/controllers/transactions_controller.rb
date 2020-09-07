@@ -1,17 +1,17 @@
 class TransactionsController < ApplicationController
+  before_action :set_item, only: [:index, :create]
   before_action :move_to_index, only: [:index, :create]
-  # before_action :move_to_index_if_exhibitor, only: [:index, :create]
-
+  
   def index
     # 出品者はURLを直接入力して購入ページに遷移しようとすると、トップページに遷移すること
     redirect_to root_path if user_signed_in? && current_user.id == @item.user_id
     @transaction = ItemUserAddress.new(params[:id])
-    @item = Item.find(params[:item_id]) # ネストさせているときは[:id]ではなく[:item_id]と表記する。
+    set_item  
   end
 
   def create
     @transaction = ItemUserAddress.new(transaction_params)
-    @item = Item.find(params[:item_id])
+    set_item
     if @transaction.valid? # @transactionの値が正常にデータベースに保存できるかどうかを確認しています
       pay_item # trueが返されたら「pay_item」が起動
       @transaction.save
@@ -40,9 +40,13 @@ class TransactionsController < ApplicationController
     )
   end
 
+  def set_item
+    @item = Item.find(params[:item_id]) # ネストさせているときは[:id]ではなく[:item_id]と表記する。
+  end
+
   # URLを直接入力して購入済みの商品ページへ遷移しようとすると、トップページに遷移すること
   def move_to_index
-    @item = Item.find(params[:item_id])
+    set_item
     redirect_to root_path if @item.item_user.present?
   end
 end
