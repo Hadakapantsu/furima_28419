@@ -7,8 +7,6 @@ FactoryBot.define do
     buillding_name    { 'アイチ' }
     phone_number      { '12345678901' }
     token             { 'asdfghjklzxcvbnm' }
-    # item_user	        { 1 }
-    # association :user
-    # association :item
+
   end
 end

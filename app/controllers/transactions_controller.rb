@@ -6,12 +6,10 @@ class TransactionsController < ApplicationController
     # 出品者はURLを直接入力して購入ページに遷移しようとすると、トップページに遷移すること
     redirect_to root_path if user_signed_in? && current_user.id == @item.user_id
     @transaction = ItemUserAddress.new(params[:id])
-    set_item  
   end
 
   def create
     @transaction = ItemUserAddress.new(transaction_params)
-    set_item
     if @transaction.valid? # @transactionの値が正常にデータベースに保存できるかどうかを確認しています
       pay_item # trueが返されたら「pay_item」が起動
       @transaction.save
@@ -32,7 +30,6 @@ class TransactionsController < ApplicationController
   end
 
   def pay_item
-    # binding.pry
     Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @item.price,   # 商品の値段   上記で@itemを定義敷いているので、この記述のように値段を取り出せる。
@@ -47,7 +44,6 @@ class TransactionsController < ApplicationController
 
   # URLを直接入力して購入済みの商品ページへ遷移しようとすると、トップページに遷移すること
   def move_to_index
-    set_item
     redirect_to root_path if @item.item_user.present?
   end
 end

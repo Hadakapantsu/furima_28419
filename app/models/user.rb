@@ -4,7 +4,6 @@ class User < ApplicationRecord
 
   has_many :items
   has_one :item_user
-  # has_one :comment
 
   with_options presence: true do
     validates :nickname
