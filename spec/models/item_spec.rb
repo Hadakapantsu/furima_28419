@@ -12,7 +12,7 @@ RSpec.describe Item, type: :model do
     end
 
     context '登録が上手くいくとき' do
-      it 'imageとname、text、category,condition,cost_burden,shipping_place,shipping_days ,priceが存在すれば登録できる' do
+      it 'imageとname、text、category,condition,cost_burden,shipping_place,shipping_day ,priceが存在すれば登録できる' do
         expect(@item).to be_valid
       end
     end
@@ -37,33 +37,33 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーの情報が必須であること' do
-        @item.category = ''
+        @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it '商品の状態についての情報が必須であること' do
-        @item.condition = ''
+        @item.condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
 
       it '配送料の負担についての情報が必須であること' do
-        @item.cost_burden = ''
+        @item.cost_burden_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Cost burden can't be blank")
       end
 
       it '発送元の地域についての情報が必須であること' do
-        @item.shipping_place = ''
+        @item.shipping_place_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping place can't be blank")
       end
 
       it '発送までの日数についての情報が必須であること' do
-        @item.shipping_days = ''
+        @item.shipping_day_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping days can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
 
       it '価格についての情報が必須であること' do
