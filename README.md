@@ -88,7 +88,6 @@ Things you may want to cover:
 ### Association
 - belongs_to :items_users
 
-
 ## items_users テーブル
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -99,6 +98,3 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to :item 
 - has_one :address
-
-
-
