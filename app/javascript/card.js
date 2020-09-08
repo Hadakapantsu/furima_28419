@@ -1,5 +1,4 @@
 const pay = () => {
-  
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
   const form = document.getElementById("charge-form"); //charge-form内のsubmitが実行されるとイベントが発火します
   form.addEventListener("submit", (e) => {
@@ -18,7 +17,6 @@ const pay = () => {
     };
     //入力された、カードの情報を変数に代入します。
     
- 
     //PAY.JPにアクセスして、トークンを作成しています.PAY.JP側の処理でトークンの生成に成功した場合に、if文の中のコードが実行されます
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
