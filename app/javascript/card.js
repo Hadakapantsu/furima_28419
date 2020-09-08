@@ -17,6 +17,8 @@ const pay = () => {
     };
     //入力された、カードの情報を変数に代入します。
     
+
+    
     //PAY.JPにアクセスして、トークンを作成しています.PAY.JP側の処理でトークンの生成に成功した場合に、if文の中のコードが実行されます
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
