@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, only: [:new, :create, :update, :edit, :show] # ログインしてるユーザーのみnew,create,update,editが使用できる。
+  before_action :move_to_index, only: [:new, :create, :update, :edit] # ログインしてるユーザーのみnew,create,update,editが使用できる。
   # こう書いても同じ意味になる→  before_action :move_to_index, expect: [:index, :show, :destroy](3つを除外する)
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :move_to_index_if_not_seller, only: [:edit, :destroy]

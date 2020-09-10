@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
   before_action :set_item, only: [:index, :create]
-  before_action :move_to_index, only: [:index, :create]
+  before_action :move_to_index_path, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
   
   def index
     # 出品者はURLを直接入力して購入ページに遷移しようとすると、トップページに遷移すること
@@ -43,7 +44,11 @@ class TransactionsController < ApplicationController
   end
 
   # URLを直接入力して購入済みの商品ページへ遷移しようとすると、トップページに遷移すること
-  def move_to_index
+  def move_to_index_path
     redirect_to root_path if @item.item_user.present?
+  end
+
+  def move_to_index
+    redirect_to root_path unless user_signed_in?
   end
 end
